@@ -1,0 +1,26 @@
+{% load static %}
+<div class="slider-full swiper">
+  <div class="slider-full__wrapper swiper-wrapper">
+    <div class="slider-full__slide swiper-slide" style="background-image: url({% static 'theme/img/main-bg.jpeg' %})">
+      <div class="container">
+        <div class="slider-full__slide-inner">
+          <p class="slider-full__title">Хотите заказать качественные входные и межкомнатные двери ?</p>
+          <p class="slider-full__text">Тогда наше предложение вас точно заинтересует.</p>
+          <a href="{% url 'category' %}" class="slider-full__link btn">Перейти в каталог</a>
+        </div>
+      </div>
+    </div>
+    <div class="slider-full__slide swiper-slide" style="background-image: url({% static 'theme/img/plastik.jpg' %})">
+      <div class="container">
+        <div class="slider-full__slide-inner">
+          <p class="slider-full__title">
+            Производство и установка пластиковых окон, лоджий и балконов. Звоните !
+          </p>
+          <p class="slider-full__text">И наше предложение Вас точно заинтересует</p>
+          <a href="{% url 'production' %}" class="slider-full__link btn">Подробнее</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slider-full__pagination swiper-pagination"></div>
+</div>

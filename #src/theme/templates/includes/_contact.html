@@ -1,0 +1,88 @@
+{% load static %}
+<section class="index-contact">
+  <div class="container">
+    <div class="index-contact__grid">
+      <div class="index-contact__item">
+        <h2 class="index-contact__title">Мы готовы ответить на все <span>ваши вопросы</span></h2>
+        <ul class="index-contact__list">
+          <li>
+            <img src="{% static 'theme/img/check-green.svg' %}" alt="Проконсультируем по материалу памятника"
+                 title="Проконсультируем по материалу памятника" class="index-contact__list-icon"/>
+            <p class="index-contact__list-text"><span>Проконсультируем</span> по материалу памятника</p>
+          </li>
+          <li>
+            <img src="{% static 'theme/img/check-green.svg' %}" alt="Поможем определиться с типом памятника и заказать его
+            производство" title="Поможем определиться с типом памятника и заказать его
+              производство" class="index-contact__list-icon"/>
+            <p class="index-contact__list-text"><span>Поможем определиться </span>с типом памятника и заказать его
+              производство</p>
+          </li>
+          <li>
+            <img src="{% static 'theme/img/check-green.svg' %}" alt="Расскажем все  про доставку и установку"
+                 title="Расскажем все  про доставку и установку" class="index-contact__list-icon"/>
+            <p class="index-contact__list-text"><span>Расскажем все</span> про доставку и установку</p>
+          </li>
+        </ul>
+      </div>
+      <div class="index-contact__item">
+        <div class="index-contact__mobile" style="background-image: url('{% static 'theme/img/mobile.png' %}')">
+          <div class="index-contact__logo">
+            <img src="{% static 'theme/img/logo-black.png' %}" alt="Свяжитесь с нами!" title="Свяжитесь с нами!"/>
+          </div>
+          <p class="index-contact__mobile-text">
+            Свяжитесь с нами! <br/>
+            Мы обязательно поможем!
+          </p>
+          <div class="index-contact__mobile-phones">
+            <a href="tel:+79009210915">+7(900) 921-09-15<img src="{% static 'theme/img/phone-mobile.svg' %}"
+                                                             alt="Номер телефона" title="Номер телефона"/></a>
+            <a href="tel:+79039554018">+7(903) 955-40-18<img src="{% static 'theme/img/phone-mobile.svg' %}"
+                                                             alt="Номер телефона" title="Номер телефона"/></a>
+          </div>
+          <a href="tel:+79039554018" class="index-contact__call _btn">Позвонить</a>
+        </div>
+      </div>
+      <div class="index-contact__item">
+        <form action="{% url 'contact_form' %}" id="contact-form" method="POST" class="form index-contact__form">
+          {% csrf_token %}
+          <h3 class="form__title">Заполните форму</h3>
+          <p class="form__text">Оставьте заявку - мы обязательно с вами свяжемся</p>
+          <div class="form__inner">
+            <input type="text" name="name" id="id_name" class="form__controls" placeholder="Ваше имя"/>
+            <input type="tel" name="phone" id="id_phone" class="form__controls" placeholder="Номер телефона"/>
+            <p class="form__social-label">Выберете способ связи:</p>
+            <div class="form__social-inner">
+              <label for="ph" class="form__controls-label">
+                <input type="radio" id="ph" name="social" value="Позвонить по телефону" checked/>
+                <img src="{% static 'theme/mb/images/icon/phone-contact.svg' %}" alt="Позвонить по телефону"
+                     title="Позвонить по телефону"/>
+              </label>
+              <label for="tg" class="form__controls-label">
+                <input type="radio" id="tg" name="social" value="Через Telegram"/>
+                <img src="{% static 'theme/mb/images/icon/tg.svg' %}" alt="Через Telegram" title="Через Telegram"/>
+              </label>
+              <label for="vk" class="form__controls-label">
+                <input type="radio" id="vk" name="social" value="Через Вконтакте"/>
+                <img src="{% static 'theme/mb/images/icon/vk.svg' %}" alt="Через Вконтакте" title="Через Вконтакте"/>
+              </label>
+              <label for="wh" class="form__controls-label">
+                <input type="radio" id="wh" name="social" value="Через Whatsapp"/>
+                <img src="{% static 'theme/mb/images/icon/wh.svg' %}" alt="Через Whatsapp" title="Через Whatsapp"/>
+              </label>
+            </div>
+            <div class="form__bottom">
+              <button type="submit" class="form__submit _btn">Отправить</button>
+              <div class="form__agreement">
+                <input type="checkbox" name="agrement" id="id_agrement" checked/>
+                <label for="id_agreement" class="form__label">
+                  Я даю свое согласие на обработку персональных данных и соглашаюсь с <a href="#">политикой
+                  конфиденциальности</a>
+                </label>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

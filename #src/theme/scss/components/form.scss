@@ -1,0 +1,142 @@
+.form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  //.form--search
+
+  &--search {
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+
+    input[type="search"]{
+      height: 54px;
+      flex: 1 1 auto;
+      border-radius: 0px;
+    }
+
+    button[type="submit"]{
+      max-width: 150px;
+
+      @media screen and (max-width: 992px) {
+        width: auto;
+        padding: 15px 10px;
+      }
+    }
+  }
+
+  // .form__input
+
+  &__input {
+    width: 100%;
+    padding: 15px 20px;
+    border: 1px solid rgba($color: $mainColor, $alpha: .3);
+
+    &:focus {
+      outline: none;
+      border-color: rgba($color: $mainColor, $alpha: .8);
+    }
+
+    &--hidden {
+      display: none;
+    }
+  }
+
+  //.form__agreement
+  &__agreement {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 0px;
+
+
+    input[type="checkbox"] {
+      position: relative;
+      appearance: initial;
+      width: 20px;
+      height: 20px;
+      padding: 0;
+
+      &::before {
+        content: "";
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 10px;
+        height: 10px;
+        background: $accent;
+      }
+
+      &:checked {
+
+        &::before {
+          display: block;
+        }
+
+      }
+    }
+  }
+
+
+  // .form__button
+
+  &__button {
+    width: 100%;
+    height: 100%;
+    padding: 15px 20px;
+    background-color: rgba($color: #000000, $alpha: 1.0);
+    border: 1px solid rgba($color: $mainColor, $alpha: 1);
+
+    color: rgba($color: #ffffff, $alpha: 1.0);
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  //.form__select
+
+  &__select {
+    height: 54px;
+    min-width: 54px;
+    text-align: center;
+    padding: 15px 20px;
+    border: 1px solid rgba($color: $mainColor, $alpha: .3);
+
+    &:focus {
+      outline: none;
+      border-color: rgba($color: $mainColor, $alpha: .8);
+    }
+
+    //.form__select--small
+
+    &--small {
+    }
+  }
+
+  input,
+  select {
+    -webkit-appearance: none;
+    appearance: none;
+    border: 1px solid rgba($color: $mainColor, $alpha: .3);
+    padding: 10px;
+  }
+
+  input[type="number"] {
+    -webkit-appearance: textfield;
+  }
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input,
+  select {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
+

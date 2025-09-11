@@ -1,0 +1,23 @@
+@media screen and (min-width: 1400px) {
+  .container {
+    max-width: 1375px;
+  }
+}
+
+._btn {
+  background-color: rgba($color: $accent, $alpha: 1.0);
+  font-weight: 600;
+  height: 40px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba($color: $white, $alpha: 1.0);
+  transition: $animation_speed;
+
+  @media (hover:hover) {
+    &:hover {
+      background-color: rgba($color: $hoverBtn, $alpha: 1);
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{% extends 'admin_base.html' %}{% load static %} {% block body %}
+
+
+<div class="page">
+  <div class="page__inner">
+    <div class="page__top">
+      <h1 class="page__title">{{ title }}</h1>
+      <ul class="admin-breadcrumbs">
+        <li><a href="{% url 'admin' %}">Панель управления</a></li>
+        <li>{{ title }}</li>
+      </ul>
+    </div>
+
+    <form action="{% url 'admin_home_page' %}" method="POST" class="form" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="page-content _show" id="basic">
+        <div class="page-content__row">
+          <div class="page-content__col">
+            {% if form.meta_h1  %}
+            <div class="form__group">
+              <label for="{{ form.meta_h1.id_for_label }}" class="form__controls-label"> Заголовок h1 : </label>
+              {{ form.meta_h1 }} {{ form.meta_h1.errors }}
+            </div>
+            {% endif %}
+            <div class="form__group">
+              <label for="{{ form.meta_title.id_for_label }}" class="form__controls-label">
+                Мета заголовок: <div class="meta-length">0</div>
+              </label>
+              {{ form.meta_title }} {{ form.meta_title.errors }}
+            </div>
+            <div class="form__group">
+              <label for="{{ form.meta_description.id_for_label }}" class="form__controls-label">
+                Мета описание: <div class="meta-length">0</div>
+              </label>
+              {{ form.meta_description }} {{ form.meta_description.errors }}
+            </div>
+            <div class="form__group">
+              <label for="{{ form.meta_description.id_for_label }}" class="form__controls-label"> Мета keywords :
+              </label>
+              {{ form.meta_keywords }} {{ form.meta_keywords.errors }}
+            </div>
+          </div>
+          <div class="page-content__col">
+            <div class="form__group form__group-image">
+              <label for="{{ form.banner.id_for_label }}" class="form__controls-label">Фоновая картинка:</label>
+              {{ form.banner }} {{ form.banner.errors }}
+            </div>
+            <button type="submit" class="form__btn" style=" display: flex; justify-content: center; width: 100%">
+              <img src="{% static 'admin/img/save.svg' %}" alt=""/>
+              Сохранить
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

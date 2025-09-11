@@ -1,0 +1,32 @@
+.notice {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  max-width: 520px;
+  max-height: 100px;
+  padding: 10px 30px;
+  border-radius: 5px;
+  color: #ffffff;
+  font-weight: 300;
+  overflow-y: auto;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+
+  //.notice-success
+  &-success{
+    background: green;
+  }
+
+  //.notice-error
+  &-error{
+    background: red;
+  }
+
+  &.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+}

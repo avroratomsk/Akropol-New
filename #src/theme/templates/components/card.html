@@ -1,0 +1,29 @@
+{% load static %} {% load thumbnail %}
+<div class="best-choice__item card-product">
+  <a href="{{ product.get_absolute_url }}" class="card-product__image">
+    {% if product.image %}
+    {% thumbnail product.image "x334" format="WEBP" crop="center" as im %}
+    <img src="{{ im.url }}"  class="image" alt="{{ product.name }} - {{ product.category }}" />
+    {% endthumbnail %}
+    {% endif %}
+  </a>
+  <h3 class="card-product__title">
+    <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+  </h3>
+  <div class="card-product__bottom">
+    <div class="card-product__price">
+      {% if product.sale %}
+      {{ product.sell_price }} ₽
+      {% else %}
+        {% if product.price  %}
+          {{ product.price }} ₽
+        {% endif %}
+      {% endif %}
+      {% if product.sale %}<s>{{ product.price }} ₽</s>{% endif %}
+    </div>
+    <button class="card-product__btn" data-popup="leave-request" data-name="{{ product.name }}">Оставить заявку</button>
+  </div>
+  {% if product.installment %}
+    <p class="card-product__descr">{{ product.installment }}</p>
+  {% endif %}
+</div>

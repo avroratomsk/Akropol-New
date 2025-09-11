@@ -1,0 +1,73 @@
+{% extends 'admin_base.html' %}{% load static %} {% block body %}
+<div class="page">
+  <div class="page__inner">
+    <div class="page__top">
+      <h1 class="page__title">Общие настройки</h1>
+      <ul class="admin-breadcrumbs">
+        <li><a href="{% url 'admin' %}">Панель управления</a></li>
+        <li>Настройки</li>
+      </ul>
+    </div>
+    <form action="." method="POST" class="form" enctype="multipart/form-data">
+      <div class="page__head">
+        <div class="page__head-tab">
+          <button type="button" data-name="basic" class="page__head-btn _active">Основные</button>
+        </div>
+        <button type="submit" class="form__btn">
+          <img src="{% static 'admin/img/save.svg' %}" alt=""/>
+          Сохранить
+        </button>
+      </div>
+      {% csrf_token %}
+      <div class="page-content _show" id="basic">
+        <div class="page-content__row">
+          <div class="page-content__col">
+            <div class="form__group">
+              <label for="{{ form.phone.id_for_label }}" class="form__controls-label"> <span>*</span>Номер телефона(Яковлева): </label>
+              {{ form.phone }} {{ form.phone.errors }}
+            </div>
+            <div class="form__group">
+              <label for="{{ form.time_work.id_for_label }}" class="form__controls-label">Режим работы(Яковлева): </label>
+              {{ form.time_work }} {{ form.time_work.errors }}
+            </div>
+            <div class="form__group">
+              <label for="{{ form.address.id_for_label }}" class="form__controls-label">Адрес(Яковлева): </label>
+              {{ form.address }} {{ form.address.errors }}
+            </div>
+
+            <div class="form__group">
+              <label for="{{ form.phone_two.id_for_label }}" class="form__controls-label"> <span>*</span>Номер телефона(Демьяна Бедного): </label>
+              {{ form.phone_two }} {{ form.phone_two.errors }}
+            </div>
+            <div class="form__group">
+              <label for="{{ form.time_work_two.id_for_label }}" class="form__controls-label">Режим работы(Демьяна Бедного): </label>
+              {{ form.time_work_two }} {{ form.time_work_two.errors }}
+            </div>
+            <div class="form__group">
+              <label for="{{ form.address_two.id_for_label }}" class="form__controls-label">Адрес(Демьяна Бедного): </label>
+              {{ form.address_two }} {{ form.address_two.errors }}
+            </div>
+
+            <div class="form__group">
+              <label for="{{ form.email.id_for_label }}" class="form__controls-label">Email: </label>
+              {{ form.email }} {{ form.email.errors }}
+            </div>
+
+          </div>
+          <div class="page-content__col">
+            <div class="form__group form__group-image">
+              <label for="{{ form.logo.id_for_label }}" class="form__controls-label">Логотип:</label>
+              {{ form.logo }} {{ form.logo.errors }}
+            </div>
+            <div class="form__group form__group-image">
+              <label for="{{ form.favicon.id_for_label }}" class="form__controls-label">Favicon:</label>
+              {{ form.favicon }} {{ form.favicon.errors }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,73 @@
+{% load static %}
+<footer class="footer">
+  <div class="container">
+    <div class="footer__inner">
+      <div class="footer__logo"><img src="{% static 'theme/mb/images/logo-footer.svg' %}" alt="Логотип"
+                                     title="Логотип"/></div>
+      <div class="footer__menu">
+        <ul class="footer__list">
+          <li class="footer__item--first">Памятники</li>
+          {% if category_menu %} {% for category in category_menu %}
+          <li class="footer__item"><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></li>
+          {% endfor %} {% endif %}
+          <li class="footer__item"><a href="/media/{{ catalog_pdf.download_catalog }}" download>Скачать каталог</a></li>
+        </ul>
+        <ul class="footer__list">
+          <li class="footer__item--first">Услуги</li>
+          <li class="footer__item"><a href="{% url 'delivery' %}">Доставка</a></li>
+          <li class="footer__item"><a href="{% url 'service_new' %}">Установка</a></li>
+          <li class="footer__item"><a href="{% url 'service_grav' %}">Гравировка</a></li>
+        </ul>
+        <ul class="footer__list">
+          <li class="footer__item--first">Меню</li>
+          <li class="footer__item"><a href="{% url 'category' %}">Каталог</a></li>
+          <li class="footer__item"><a href="{% url 'about' %}">О нас</a></li>
+          <li class="footer__item"><a href="{% url 'gallery' %}">Наши работы</a></li>
+          <li class="footer__item"><a href="{% url 'delivery' %}">Оплата</a></li>
+          <li class="footer__item"><a href="{% url 'service' %}">Услуги</a></li>
+          <li class="footer__item"><a href="{% url 'contact' %}">Контакты</a></li>
+          <li class="footer__item"><a href="{% url 'privacy' %}">Политика конфиденциальности</a></li>
+          <li class="footer__item"><a href="{% url 'cookie' %}">Политика в отношении файлов cookie</a></li>
+        </ul>
+      </div>
+      <div class="footer__contact">
+        <p class="footer__title">Контакты</p>
+        <div class="footer__contact-inner">
+          <div class="footer__contact-list">
+            <a href="tel:+79009210915">+7(900) 921-09-15</a>
+            <a href="tel:+79039554018">+7(903) 955-40-18</a>
+            <button type="button">Обратный звонок</button>
+          </div>
+          <div class="footer__contact-list">
+            <p class="footer__contact-city">г.Томск</p>
+            <p class="footer__contact-address">Яковлева, 41а</p>
+            <p class="footer__contact-address">Демьяна Бедного, 16а ст1</p>
+          </div>
+          <div class="footer__contact-list">
+            <p class="footer__contact-city">г.Новосибирск</p>
+            <p class="footer__contact-address">Мичурина, 24</p>
+            <a href="tel:+79025672451">+7(902) 567-24-51</a>
+          </div>
+          <div class="footer__contact-list">
+            <p class="footer__contact-city">Время работы:</p>
+            <p class="footer__contact-address">Пн-Пт: 09:00-18:00</p>
+            <p class="footer__contact-address">Сб-Вс: 10:00-17:00</p>
+          </div>
+          <div class="footer__contact-list">
+            <a href="mailto:{{ site_settings.email }}" class="footer__contact-email">{{ site_settings.email }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer__author"><a href="https://аврора-томск.рф/sozdanie-sajtov/">Разработка и продвижение сайта</a> <a
+      href="https://аврора-томск.рф">РА Аврора</a></div>
+  </div>
+</footer>
+
+<div id="cookie-notice" class="cookie-notice">
+  Мы используем cookie. Это позволяет нам анализировать взаимодействие посетителей с сайтом и делать его лучше.
+  Продолжая пользоваться сайтом, вы соглашаетесь с использованием файлов
+  <a href="{% url 'cookie' %}" target="_blank">cookie</a> и
+  <a href="{% url 'privacy' %}" target="_blank">политикой конфиденциаьности.</a>
+  <button id="accept-cookies" class="accept-cookies">Я согласен</button>
+</div>
