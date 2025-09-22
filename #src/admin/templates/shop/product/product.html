@@ -10,7 +10,7 @@
       </ul>
     </div>
     <div class="page__content content-page">
-      {% include 'common/_actions-block.html' with button_url='product_add' %}
+      {% include 'common-blocks/_actions-block.html' with button_url='product_add' %}
 
       <div class="grid-items">
         {% for item in items %}
@@ -25,7 +25,7 @@
           <div class="grid-item__content">
             <a href="{% url 'product_edit' item.pk %}" class="grid-item__title">{{ item.name }}</a>
             <p>{{ item.price }} ₽</p>
-            {% include 'common/_edit-block.html' with edit_url='product_edit' delete_url='product_delete' %}
+            {% include 'common-blocks/_edit-block.html' with edit_url='product_edit' delete_url='product_delete' %}
           </div>
         </div>
         {% endfor %}

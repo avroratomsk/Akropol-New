@@ -1,16 +1,23 @@
-{% load static %}
+{% load static %}{% load thumbnail %}
 <footer class="footer">
   <div class="container">
     <div class="footer__inner">
-      <div class="footer__logo"><img src="{% static 'theme/mb/images/logo-footer.svg' %}" alt="Логотип"
-                                     title="Логотип"/></div>
+      {% if site_settings.logo_footer %}
+      <div class="footer__logo">
+        {% thumbnail site_settings.logo_footer "74x80" format="WEBP" crop="center" as im %}
+        <img src="{{ im.url }}" alt="Логотип" title="Логотип"/>
+        {% endthumbnail %}
+      </div>
+      {% endif %}
+
       <div class="footer__menu">
         <ul class="footer__list">
           <li class="footer__item--first">Памятники</li>
           {% if category_menu %} {% for category in category_menu %}
           <li class="footer__item"><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></li>
           {% endfor %} {% endif %}
-          <li class="footer__item"><a href="/media/{{ catalog_pdf.download_catalog }}" download>Скачать каталог</a></li>
+          <li class="footer__item"><a href="/media/{{ catalog_pdf.download_catalog }}" download>Скачать
+            каталог</a></li>
         </ul>
         <ul class="footer__list">
           <li class="footer__item--first">Услуги</li>
@@ -34,14 +41,23 @@
         <p class="footer__title">Контакты</p>
         <div class="footer__contact-inner">
           <div class="footer__contact-list">
-            <a href="tel:+79009210915">+7(900) 921-09-15</a>
-            <a href="tel:+79039554018">+7(903) 955-40-18</a>
-            <button type="button">Обратный звонок</button>
+            {% if site_settings.phone %}
+              <a href="tel:{{ site_settings.phone }}">{{ site_settings.phone }}</a>
+            {% endif %}
+            {% if site_settings.phone_two %}
+              <a href="tel:{{ site_settings.phone_two }}">{{ site_settings.phone_two }}</a>
+            {% endif %}
+            <button type="button" data-popup="callback">Обратный звонок</button>
           </div>
           <div class="footer__contact-list">
             <p class="footer__contact-city">г.Томск</p>
-            <p class="footer__contact-address">Яковлева, 41а</p>
-            <p class="footer__contact-address">Демьяна Бедного, 16а ст1</p>
+            {% if site_settings.address %}
+              <p class="footer__contact-address">{{ site_settings.address }}</p>
+            {% endif %}
+
+            {% if site_settings.address_two %}
+              <p class="footer__contact-address">{{ site_settings.address_two }}</p>
+            {% endif %}
           </div>
           <div class="footer__contact-list">
             <p class="footer__contact-city">г.Новосибирск</p>
@@ -50,17 +66,24 @@
           </div>
           <div class="footer__contact-list">
             <p class="footer__contact-city">Время работы:</p>
-            <p class="footer__contact-address">Пн-Пт: 09:00-18:00</p>
-            <p class="footer__contact-address">Сб-Вс: 10:00-17:00</p>
+            {% if site_settings.time_work %}
+              <p class="footer__contact-address">{{ site_settings.time_work }}</p>
+            {% endif %}
+            {% if site_settings.time_work_two %}
+              <p class="footer__contact-address">{{ site_settings.time_work_two }}</p>
+            {% endif %}
           </div>
           <div class="footer__contact-list">
-            <a href="mailto:{{ site_settings.email }}" class="footer__contact-email">{{ site_settings.email }}</a>
+            <a href="mailto:{{ site_settings.email }}" class="footer__contact-email">
+              {{ site_settings.email }}
+            </a>
           </div>
         </div>
       </div>
     </div>
-    <div class="footer__author"><a href="https://аврора-томск.рф/sozdanie-sajtov/">Разработка и продвижение сайта</a> <a
-      href="https://аврора-томск.рф">РА Аврора</a></div>
+    <div class="footer__author"><a href="https://аврора-томск.рф/sozdanie-sajtov/">Разработка и продвижение
+      сайта</a> <a
+        href="https://аврора-томск.рф">РА Аврора</a></div>
   </div>
 </footer>
 

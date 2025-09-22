@@ -34,7 +34,7 @@
           </div>
           <div class="grid-item__content">
             <a href="{% url 'category_blog_edit' item.pk %}" class="grid-item__title">{{ item.name }}</a>
-            {% include 'common/_edit-block.html' with edit_url='category_blog_edit' delete_url='category_blog_remove' %}
+            {% include 'common-blocks/_edit-block.html' with edit_url='category_blog_edit' delete_url='category_blog_remove' %}
           </div>
         </div>
         {% endfor %}

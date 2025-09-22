@@ -3,20 +3,34 @@ from django.urls import reverse
 
 from admin.singleton_model import SingletonModel
 
+from django.core.exceptions import ValidationError
+
+
+
+def validate_image_or_svg(value):
+    import os
+    ext = os.path.splitext(value.name)[1].lower()
+    valid_extensions = [".jpg", ".jpeg", ".png", ".gif", ".svg"]
+    if ext not in valid_extensions:
+        raise ValidationError("Неподдерживаемый формат. Разрешены: JPG, PNG, GIF, SVG.")
+
 class BaseSettings(SingletonModel):
   logo  = models.ImageField(upload_to="base-settings", blank=True, null=True, verbose_name="Логотип")
-  phone = models.CharField(max_length=50, blank=True, null=True, db_index=True, verbose_name="Номер телефона")
-  phone_two = models.CharField(max_length=50, blank=True, null=True, db_index=True, verbose_name="Номер телефона")
+  logo_footer = models.FileField(
+     upload_to="base-settings",
+     blank=True,
+     null=True,
+     verbose_name="Логотип Footer",
+     validators=[validate_image_or_svg]
+  )
+  phone = models.CharField(max_length=50, blank=True, null=True, db_index=True, verbose_name="Номер телефона(Яковлева)")
+  phone_two = models.CharField(max_length=50, blank=True, null=True, db_index=True, verbose_name="Номер телефона(Бедного)")
   time_work = models.CharField(max_length=250, blank=True, null=True, db_index=True, verbose_name="Время работы")
-  time_work_two = models.CharField(max_length=250, blank=True, null=True, db_index=True, verbose_name="Время работы")
+  time_work_two = models.CharField(max_length=250, blank=True, null=True, db_index=True, verbose_name="Время работы(выходные)")
   email = models.EmailField(max_length=250, blank=True, null=True, db_index=True, verbose_name="Email")
-  address = models.CharField(max_length=250, blank=True, null=True, verbose_name="Адрес")
-  address_two = models.CharField(max_length=250, blank=True, null=True, verbose_name="Адрес")
-  meta_h1 = models.CharField(max_length=350, null=True, blank=True, verbose_name="Заголовок первого уровня")
-  meta_title = models.CharField(max_length=350, null=True, blank=True, verbose_name="Мета заголовок")
-  meta_description = models.TextField(null=True, blank=True, verbose_name="Meta описание")
-  meta_keywords = models.TextField(null=True, blank=True, verbose_name="Meta keywords")
-  favicon = models.FileField(upload_to='base-settings/', blank=True, null=True, verbose_name="ФавИконка")
+  address = models.CharField(max_length=250, blank=True, null=True, verbose_name="Адрес(Яковлева)")
+  address_two = models.CharField(max_length=250, blank=True, null=True, verbose_name="Адрес(Бедного)")
+  favicon = models.FileField(upload_to='base-settings/', blank=True, null=True, verbose_name="Favicon")
   
 
 class HomeTemplate(SingletonModel):
@@ -25,7 +39,16 @@ class HomeTemplate(SingletonModel):
   meta_title = models.CharField(max_length=350, null=True, blank=True, verbose_name="Мета заголовок")
   meta_description = models.TextField(null=True, blank=True, verbose_name="Meta описание")
   meta_keywords = models.TextField(null=True, blank=True, verbose_name="Meta keywords")
-  
+  code_reviews = models.TextField(null=True, blank=True, verbose_name="Код отзывов")
+
+class Contact(SingletonModel):
+  meta_h1 = models.CharField(max_length=350, null=True, blank=True, verbose_name="Заголовок первого уровня")
+  meta_title = models.CharField(max_length=350, null=True, blank=True, verbose_name="Мета заголовок")
+  meta_description = models.TextField(null=True, blank=True, verbose_name="Meta описание")
+  meta_keywords = models.TextField(null=True, blank=True, verbose_name="Meta keywords")
+  description = models.TextField(null=True, blank=True, verbose_name="Текст на страницу")
+  code_map = models.TextField(null=True, blank=True, verbose_name="Код Яндекс карты")
+
 class Stock(models.Model):
   """Model"""
   title = models.CharField(max_length=250, blank=True, null=True, verbose_name="Название акции")
@@ -78,13 +101,3 @@ class RobotsTxt(models.Model):
     return "robots.txt"
 
 
-class Contact(models.Model):
-  name = models.CharField(max_length=250, null=True, blank=True, verbose_name="Наименование")
-  meta_h1 = models.CharField(max_length=350, null=True, blank=True, verbose_name="Заголовок первого уровня")
-  meta_title = models.CharField(max_length=350, null=True, blank=True, verbose_name="Мета заголовок")
-  meta_description = models.TextField(null=True, blank=True, verbose_name="Meta описание")
-  meta_keywords = models.TextField(null=True, blank=True, verbose_name="Meta keywords")
-  slug = models.SlugField(max_length=200, unique=True, blank=True, null=True, verbose_name="")
-  home_view = models.BooleanField(default=False, verbose_name="Отображать на главной ?")
-  image = models.ImageField(upload_to="gallery-category", null=True, blank=True, verbose_name="Фотография категории")
-  description = models.TextField(null=True, blank=True, verbose_name="Описание на странице")

@@ -1,0 +1,64 @@
+{% extends 'admin_base.html' %}{% load static %} {% block body %}
+
+<div class="page">
+  <div class="page__inner">
+    <div class="page__top">
+      <h1 class="page__title">{{ title }}</h1>
+      <ul class="admin-breadcrumbs">
+        <li><a href="{% url 'admin' %}">Панель управления</a></li>
+        <li>{{ title }}</li>
+      </ul>
+    </div>
+
+    <form action="{% url 'admin_home_page' %}" method="POST" class="form" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="page-content _show" id="basic">
+        <div class="page-content__row">
+          <div class="page-content__col">
+
+            {% if meta_fields %}
+              {% include "../common-blocks/_meta-fields.html" with meta_fields=meta_fields %}
+            {% endif %}
+
+            {% if grid_fields %}
+              <div class="form__grid">
+                {% for field in grid_fields %}
+                  {% include "../common-blocks/_form-field.html" with field=field %}
+                {% endfor %}
+              </div>
+            {% endif %}
+
+            {% if left_fields %}
+              {% for field in left_fields %}
+                {% include "../common-blocks/_form-field.html" with field=field %}
+              {% endfor %}
+            {% endif %}
+
+            {% if not right_fields %}
+            <button type="submit" class="form__btn" style=" display: flex; justify-content: center; width: 100%">
+              <img src="{% static 'admin/img/save.svg' %}" alt=""/>
+              Сохранить
+            </button>
+            {% endif %}
+          </div>
+          {% if right_fields %}
+          <div class="page-content__col">
+            {% if right_fields %}
+              {% for field in right_fields %}
+                {% include "../common-blocks/_form-field.html" with field=field %}
+              {% endfor %}
+            {% endif %}
+
+            <button type="submit" class="form__btn" style=" display: flex; justify-content: center; width: 100%">
+              <img src="{% static 'admin/img/save.svg' %}" alt=""/>
+              Сохранить
+            </button>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

@@ -12,53 +12,6 @@ INPUT_CLASS = "form__controls"
 class UploadFileForm(forms.Form):
     file = forms.FileField()
 
-class GlobalSettingsForm(forms.ModelForm):
-  """ Form, глобальные и общие настройки сайта(лого, телефон, email)"""
-  # description = forms.CharField(label='Полное описание товара', required=False, widget=CKEditorUploadingWidget())
-  class Meta:
-    model = BaseSettings
-    fields = "__all__"
-    
-    widgets = {
-        'phone_two': forms.TextInput(attrs={
-            'class': INPUT_CLASS
-        }),
-        'phone': forms.TextInput(attrs={
-            'class': INPUT_CLASS
-        }),
-        'time_work': forms.TextInput(attrs={
-            'class': INPUT_CLASS
-        }),
-        'time_work_two': forms.TextInput(attrs={
-            'class': INPUT_CLASS
-        }),
-        'email': forms.EmailInput(attrs={
-            'class': INPUT_CLASS
-        }),
-        'address': forms.TextInput(attrs={
-            'class': INPUT_CLASS
-        }),
-        'address_two': forms.TextInput(attrs={
-            'class': INPUT_CLASS
-        }),
-        'meta_h1': forms.TextInput(attrs={
-            'class': INPUT_CLASS
-        }),
-        'meta_title': forms.TextInput(attrs={
-            'class': INPUT_CLASS
-        }),
-        'meta_description': forms.TextInput(attrs={
-            'class': INPUT_CLASS
-        }),
-        'meta_keywords': forms.TextInput(attrs={
-            'class': INPUT_CLASS
-        }),
-        'description':CKEditor5Widget(
-            attrs={'class': 'django_ckeditor_5'},
-            config_name='extends'
-        )
-    }
-    
 class RobotsForm(forms.ModelForm):
   
   class Meta:

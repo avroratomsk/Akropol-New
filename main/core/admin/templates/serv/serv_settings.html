@@ -56,7 +56,7 @@
           <div class="grid-item__content">
             <a href="{% url 'service_edit' item.pk %}" class="grid-item__title">{{ item.name }}</a>
             {% if item.price %}<p>{{ item.price }} ₽</p>{% endif %}
-            {% include 'common/_edit-block.html' with edit_url='service_edit' delete_url='service_delete' %}
+            {% include 'common-blocks/_edit-block.html' with edit_url='service_edit' delete_url='service_delete' %}
           </div>
         </div>
         {% endfor %}

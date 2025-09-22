@@ -29,7 +29,7 @@
           <div class="grid-item__content">
             <p class="grid-item__title">{{ item.address }}</p>
             <p class="grid-item__title">{{ item.phone }}</p>
-            {% include 'common/_edit-block.html' with edit_url='admin_office_edit' delete_url='admin_office_delete' show_link=False %}
+            {% include 'common-blocks/_edit-block.html' with edit_url='admin_office_edit' delete_url='admin_office_delete' show_link=False %}
           </div>
         </div>
         {% endfor %}

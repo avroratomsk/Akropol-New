@@ -130,7 +130,7 @@
 
     <div class="menu-sidebar__item">
       <p class="menu-sidebar__item-title">Страницы с настройками</p>
-      <a href="{% url 'admin_settings' %}" class="menu-sidebar__link-general">
+      <a href="{% url 'site_settings' %}" class="menu-sidebar__link-general">
         <i class="fas fa-cogs"></i>
         <span>Общие настройки</span>
       </a>
@@ -145,6 +145,10 @@
       <a href="{% url 'admin_home_page' %}" class="menu-sidebar__link-general">
         <i class="fas fa-home"></i>
         <span>Главная</span>
+      </a>
+      <a href="{% url 'admin_contact' %}" class="menu-sidebar__link-general">
+        <i class="fa-solid fa-address-book"></i>
+        <span>Контакты</span>
       </a>
     </div>
     <div class="menu-sidebar__item">

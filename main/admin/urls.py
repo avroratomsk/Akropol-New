@@ -10,7 +10,7 @@ from reviews import admin
 urlpatterns = [
     path('', views.admin, name="admin"),
     path('template-page/', include('admin.template_page.urls')),
-    
+
     #URl - отвечающие за загрузку данных
     path('upload-goods/', views.upload_goods, name="upload_goods"),
     path('upload-succes/', views.upload_succes, name="upload-succes"),
@@ -45,12 +45,10 @@ urlpatterns = [
     path('home/', views.admin_home, name='admin_home'),
     
     #URl - Шаблон общих настроек сайта
-    path('settings/', views.admin_settings, name='admin_settings'),
+#     path('settings/', views.admin_settings, name='admin_settings'),
     path('robots/', views.robots, name='robots'),
-    
 
     path('prod-page/', views.admin_prod_page, name='admin_prod_page'),
-    path('admin-contact/', views.admin_contact, name='admin_contact'),
 
     path('delivery-page/', views.admin_delivery_page, name='admin_delivery_page'),
     path('office-page/', views.admin_office, name='admin_office'),
