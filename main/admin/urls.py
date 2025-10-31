@@ -10,6 +10,7 @@ from reviews import admin
 urlpatterns = [
     path('', views.admin, name="admin"),
     path('template-page/', include('admin.template_page.urls')),
+    path('shop/', include('admin.shop.urls')),
 
     #URl - отвечающие за загрузку данных
     path('upload-goods/', views.upload_goods, name="upload_goods"),
@@ -21,11 +22,7 @@ urlpatterns = [
     path('category/edit/<int:pk>/', views.category_edit, name='category_edit'),
     path('category/delete/<int:pk>/', views.category_delete, name='category_delete'),
 
-    #URl - отвечающие за отображение товаров, редактирование и удаление товара
-    path('product/', views.admin_product, name='admin_product'),
-    path('product/add/', views.product_add, name='product_add'),
-    path('product/edit/<int:pk>/', views.product_edit, name='product_edit'),
-    path('product/delete/<int:pk>/', views.product_delete, name='product_delete'),
+
 
     path('product/delete_properties/<int:pk>/', views.delete_properties, name='delete_properties'),
     
@@ -56,7 +53,6 @@ urlpatterns = [
     path('office-page/edit/<int:pk>/', views.admin_office_edit, name='admin_office_edit'),
     path('office-page/delete/<int:pk>/', views.admin_office_delete, name='admin_office_delete'),
 
-    path('admin-shop/', views.admin_shop, name='admin_shop'),
 
     #URl - цвета памятников
     path('color-product/', views.admin_color, name='admin_color'),

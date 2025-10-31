@@ -34,7 +34,7 @@ class BaseSettings(SingletonModel):
   
 
 class HomeTemplate(SingletonModel):
-  banner = models.ImageField(upload_to="home-page", blank=True, null=True, verbose_name="Картинка главной страницы")
+  banner = models.ImageField(upload_to="home-page/", blank=True, null=True, verbose_name="Картинка главной страницы")
   meta_h1 = models.CharField(max_length=250, blank=True, null=True, verbose_name="Заголовок первого уровня")
   meta_title = models.CharField(max_length=350, null=True, blank=True, verbose_name="Мета заголовок")
   meta_description = models.TextField(null=True, blank=True, verbose_name="Meta описание")
@@ -55,7 +55,7 @@ class Stock(models.Model):
   description = models.TextField(blank=True, null=True, verbose_name="Описание акции")
   validity = models.DateTimeField(blank=True, null=True, help_text="После окончания акции, она перейдет в состояние не активна", verbose_name="Срок дейстия акции")
   status = models.BooleanField(default=True, verbose_name="Статус публикации")
-  image = models.ImageField(upload_to="stock", null=True, blank=True, verbose_name="ФОтография акции")
+  image = models.ImageField(upload_to="stock/", null=True, blank=True, verbose_name="ФОтография акции")
   slug = models.SlugField(max_length=200, unique=True, blank=True, null=True, verbose_name="URL")
   meta_title = models.CharField(max_length=350, null=True, blank=True, verbose_name="Мета заголовок")
   meta_description = models.TextField(null=True, blank=True, verbose_name="Meta описание")
@@ -73,7 +73,7 @@ class GalleryCategory(models.Model):
   meta_keywords = models.TextField(null=True, blank=True, verbose_name="Meta keywords")
   slug = models.SlugField(max_length=200, unique=True, blank=True, null=True, verbose_name="")
   home_view = models.BooleanField(default=False, verbose_name="Отображать на главной ?")
-  image = models.ImageField(upload_to="gallery-category", null=True, blank=True, verbose_name="Фотография категории")
+  image = models.ImageField(upload_to="gallery-category/", null=True, blank=True, verbose_name="Фотография категории")
   description = models.TextField(null=True, blank=True, verbose_name="Описание на странице")
   
   def __str__(self):
@@ -84,13 +84,12 @@ class GalleryCategory(models.Model):
   
 class Gallery(models.Model):
   category = models.ForeignKey(GalleryCategory, on_delete=models.CASCADE, null=True, default=None, related_name="categories")
-  image = models.ImageField(upload_to="gallery-image", null=True, blank=True, verbose_name="Фотография")
+  image = models.ImageField(upload_to="gallery-image/", null=True, blank=True, verbose_name="Фотография")
   name = models.CharField(max_length=255, null=True, blank=True, verbose_name="Наименование пойдет в alt и title")
   cat_detail = models.BooleanField(default=False, verbose_name="Вывод в категорию")
   is_active = models.BooleanField(default=True, verbose_name="Выводить на сайт ?")
   work = models.BooleanField(default=False, verbose_name="Выводить на сайт ?")
-  
-  
+
   def __str__(self):
     return self.name
   
